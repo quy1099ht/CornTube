@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="https://img.icons8.com/ios-glyphs/344/youtube-play.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@100&family=Roboto:wght@100&display=swap" rel="stylesheet"> 
+</head>
+<body class="s-body">
+    <button class="btn" onclick="window.location.href='/'"><i class="fa fa-home"></i> Home</button>
+    <div class="login">
+        <h1>Login</h1>
+        <form action="/login" method="post">
+            <label>Email</label>
+            <input name = "username" type="email">
+            <label>Password</label>
+            <input name = "password" type="password">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <p class="para-2">Not have an account?  <a href="/signup">Sign Up Here</a></p>\
+    <% if(errorMess != "") { %>
+    <script defer>
+        setTimeout(function(){
+            alert("<%= errorMess %>")
+        },200)
+        
+    </script>
+    <% } %>
+</body>
+</html>
