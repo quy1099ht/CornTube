@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= video.name %>
+    </title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="icon" href="https://img.icons8.com/ios-glyphs/344/youtube-play.png">
+    <% if(logged) { %>
+    <script>
+        const userName = "<%= userName %>"
+    </script>
+    <% } %>
+</head>
+
+<body>
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img onclick="w3_open()" src="images/menu.png" class="menu-icon">
+            <a href="/"><img src="images/logo.png" class="logo"></a>
+        </div>
+        <!-- Search -->
+        <div class="nav-middle flex-div">
+            <form method="post" action="/search" class="search-box flex-div">
+                <input name="search" type="text" placeholder="Search">
+                <button style="border: none;background-color:white;"><img src="images/search.png"></button>
+            </form>
+            <img src="images/voice-search.png" class="mic-icon">
+        </div>
+        <!-- End Search -->
+        <div class="nav-right flex-div">
+            <% if(logged) { %>
+                <form id="fileUp" method="POST" action="/upload" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" name="uploadedFile" accept="video/*" onchange="this.form.submit()"
+                        style="display:none;" />
+                    <img src="images/upload.png" onclick="document.getElementById('fileInput').click();">
+                </form>
+                <a href="/logout">
+                    <button class="navbtn" type="button">Logout</button>
+                </a>
+            <% } else { %>
+                <a href="/login">
+                    <button class="navbtn" type="button"><i class="fa fa-user"></i>Login</button>
+                </a>
+            <% } %>
+        </div>
+    </nav>
+
+    <!-- ---------------------------SIDE BAR ------------------- -->
+    <div class="sidebar" style="display:none;z-index:5" id="mySidebar">
+        <div class="shortcut-links">
+            <a class="w3-bar-item w3-button w3-large" onclick="w3_close()">&times; Close</a>
+            <a href="/"><img src="images/home.png">
+                <p>Home</p>
+            </a>
+            <a href="/profile"><i class="fa fa-user"></i>
+                <p>Profile</p>
+            </a>
+            <a href="/history"><img src="images/history.png">
+                <p>History</p>
+            </a>
+            <hr>
+        </div>
+    </div>
+
+    <!-- -------------MAIN----------------------------------------->
+    <div class="container play-container">
+        <div class="row">
+            <div class="play-video">
+                <video controls autoplay>
+                    <source src="/videos<%= video.path%>" type="video/mp4">
+                </video>
+                <div class="tags">
+                    <a href="">#<%= video.type %></a>
+                </div>
+                <h3>
+                    <%=video.name %>
+                </h3>
+                <h3 id="id" hidden>
+                    <%=video.id %>
+                </h3>
+                <div class="play-video-info">
+                    <p>
+                        <%= video.views %> views &bull; 1 year ago
+                    </p>
+                    <div>
+                        <button class="like_btn"><i class="fas fa-thumbs-up" id="like_icon"></i>
+                            <p class="like_amount">
+                                <%= video.likes%>
+                            </p>
+                        </button>
+                        <button class="dislike_btn"><i class="fa fa-thumbs-down" id="dislike_icon"></i>DISLIKE</button>
+                        <a href=""><img src="images/share.png">SHARE</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="plublisher">
+                    <img src="images/Jack.png">
+                    <div>
+                        <p><%= userName %></p>
+                    </div>
+                </div>
+                <div class="vid-description">
+                    <p>This is the video description. </p>
+                    <p>Enjoy watching the video !!!</p>
+                    <hr>
+                    <h4>
+                        <%= video.comments.length %> Comments
+                    </h4>
+
+                    <div class="add-comment">
+                        <img src="images/Jack.png">
+                        <input id="input_comment" type="text" placeholder="Write comment...">
+                    </div>
+                    <div class="cancelconfirm_btn">
+                        <button class="cancel_btn">CANCEL</button>
+                        <button class="confirm_btn" type="submit">CONFIRM</button>
+                    </div>
+                    <% for(var i=0; i < video.comments.length; i++) { %>
+                        <div class="old-comment">
+                            <img src="./images/Jack.png">
+                            <div>
+                                <h3>
+                                    <%= video.comments[i].pname %> <span>1 hours ago</span>
+                                </h3>
+                                <p>
+                                    <%= video.comments[i].comment %>
+                                </p>
+                                <div class="acomment-action">
+                                    <img src="images/like.png">
+                                    <span>100 </span>
+                                    <img src="images/dislike.png">
+                                    <span>dislike</span>
+                                    <span>REPLY</span>
+                                    <a href="">All replies</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+
+            </div>
+            <div class="right-sidebar">
+                <% videos.forEach(function(video){ %>
+                    <div class="side-video-list">
+                        <div class="side-video-list">
+                            <a href="/<%= video.id %>" class="small-thumbnail"><img
+                                    src="images/thumbnail1.png"></video></a>
+                            <div class="vid-info">
+                                <a href="/<%= video.id %>">
+                                    <%= video.name %>
+                                </a>
+                                <p>Souls. Ch</p>
+                                <p>
+                                    <%= video.views %> views
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <% })%>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById("video");
+
+        const canvas = document.createElement("canvas");
+        // scale the canvas accordingly
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        // draw the video at that frame
+        canvas.getContext('2d')
+            .drawImage(video, 0, 0, canvas.width, canvas.height);
+        // convert it to a usable data URL
+        const dataURL = canvas.toDataURL();
+    </script>
+    <script src="js/script.js"></script>
+    <script src="js/sideScript.js"></script>
+    <script src="js/videoScript.js"></script>
+    <script src="js/cmtScript.js"></script>
+
+</body>
+
+</html>
