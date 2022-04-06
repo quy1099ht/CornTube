@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Tutorial</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;            
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+   <div id="container">
+       <h3>File Upload Tutorial Using Node.js</h3>
+       <br />
+       <br />
+       <form id="fileUp" method="POST" action="/upload" enctype="multipart/form-data">
+         <label for="uploadedFile">Select a file to Upload </label>
+         <input type="file" id="uploadedFile" name="uploadedFile" accept="video/*" onchange="this.form.submit()"/>
+       </form> 
+   </div> 
+</body>
+</html>
