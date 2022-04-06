@@ -24,10 +24,6 @@ There were still some limited when developing the project like knowledge, qualif
 ### Executing program
 
 * npm start
-* Step-by-step bullets
-## Help
-
-
 
 ## Authors
 Quy <br />
