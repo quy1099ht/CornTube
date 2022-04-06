@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Live Stream
+    </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="https://img.icons8.com/ios-glyphs/344/youtube-play.png">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script>
+        const ROOM_ID = "<%= roomID %>"
+    </script>
+    <style>
+        .container {
+            border: 2px solid #dedede;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .darker {
+            border-color: #ccc;
+            background-color: #ddd;
+        }
+
+        .container::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .container img {
+            float: left;
+            max-width: 60px;
+            width: 100%;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+
+        .container img.right {
+            float: right;
+            margin-left: 20px;
+            margin-right: 0;
+        }
+
+        .time-right {
+            float: right;
+            color: #aaa;
+        }
+
+        .time-left {
+            float: left;
+            color: #999;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img onclick = "w3_open()" src="../images/menu.png" class="menu-icon">
+            <a href="/"><img src="../images/logo.png" class="logo"></a>
+        </div>
+        <!-- Search -->
+        <div class="nav-middle flex-div">
+            <form method="post" action="/search" class="search-box flex-div">
+                <input name="search" type="text" placeholder="Search">
+                <button style="border: none;background-color:white;"><img src="../images/search.png"></button>
+            </form>
+            <img src="../images/voice-search.png" class="mic-icon">
+        </div>
+        <!-- End Search -->
+        <div class="nav-right flex-div">
+            <% if(logged) { %>
+                
+                <a href="/logout">
+                    <button class="navbtn" type="button">Logout</button>
+                </a>
+            <% } else { %>
+                <a href="/login">
+                    <button class="navbtn" type="button"><i class="fa fa-user"></i>Login</button>
+                </a>
+            <% } %>
+        </div>
+    </nav>
+
+    <!-- ---------------------------SIDE BAR ------------------- -->
+    <div class="sidebar" style="display:none;z-index:5" id="mySidebar">
+        <div class="shortcut-links">
+            <a class="w3-bar-item w3-button w3-large" >&times; Close</a>
+            <a href="/"><img src="../images/home.png">
+                <p>Home</p>
+            </a>
+            <a href="/profile"><i class="fa fa-user"></i>
+                <p>Profile</p>
+            </a>
+            <a href="/history"><img src="../images/history.png">
+                <p>History</p>
+            </a>
+            <hr>
+        </div>
+    </div>
+
+    <!-- -------------MAIN----------------------------------------->
+    <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+    <div class="container play-container">
+        <div class="row">
+            <div class="play-video">
+                <video id="stream">
+                </video>
+                <div class="tags">
+                    <a href="">Live Stream</a>
+                </div>
+                <h3>LiveStream</h3>
+                <div class="play-video-info">
+                    <p id="views">. views</p>
+                    <div>
+                        <button class="like_btn"><i class="fas fa-thumbs-up" id="like_icon"></i>
+                            <p class="like_amount">0</p>
+                        </button>
+                        <button class="dislike_btn"><i class="fa fa-thumbs-down" id="dislike_icon"></i>DISLIKE</button>
+                        <a href=""><img src="../images/share.png">SHARE</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="plublisher">
+                    <img src="../images/Jack.png">
+                    <div>
+                        <p>John Souls</p>
+                    </div>
+                </div>
+                <div class="vid-description">
+                    <p>This is the video description. </p>
+                    <p>Enjoy watching the video !!!</p>
+                    <hr>
+                </div>
+            </div>
+            <div class="right-sidebar">
+                <br>
+                <h2>Chat Box</h2>
+                <br>
+                <div id = "chatbox" style="overflow-y: scroll; height:400px;">
+                    <div class="container">
+                        <p>Hello. How are you today?</p>
+                        <span class="time-right">11:00</span>
+                    </div>
+                    
+                </div>
+                <div class="container">
+                    <input style="width: 350px;" type="text" name="" id="chat_contents">
+                    <button id="btn">Enter</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.socket.io/socket.io-3.0.0.js"></script>
+    <script src="../js/liveScript.js"></script>
+    <script src="../js/chat.js"></script>
+    <script src="../js/sideScript.js"></script>
+</body>
+
+</html>
