@@ -92,7 +92,22 @@ exports.get = function (request, response) {
 }
 
 function up_like(id, likes, response) {
-    
+    Video.updateOne({
+        "_id": id
+    }, {
+        $set: { likes: likes }
+    }, function (err, res) {
+        if (err) {
+            console.log("Error!!");
+            return response.status(500).json({
+                message: "Can't find the video"
+            })
+        }
+        console.log("UpdatedLike");
+        return response.status(200).json({
+            message: "Updated"
+        })
+    })
 }
 
 exports.upload_like = function (request, response) {
