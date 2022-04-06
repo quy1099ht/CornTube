@@ -111,12 +111,32 @@ function up_like(id, likes, response) {
 }
 
 exports.upload_like = function (request, response) {
-
+    Video.findOne({ "_id": request.params.id.trim() }, function (err, video) {
+        return up_like(request.params.id.trim(), parseInt(video.likes) + 1, response)
+    })
 }
 
 
 function up_comment(id, pname, comment, response) {
-
+    Video.updateOne({
+        "_id": id
+    }, {
+        $push: {
+            comments: { "pname": pname, "comment": comment }
+        }
+    }, function (err, res) {
+        if (err) {
+            console.log("Error!!");
+            return response.status(500).json({
+                message: "can't find the video"
+            })
+        }
+        console.log("UpdatedComment");
+        return response.status(200).json({
+            message: "updatedcomment"
+        })
+    }
+    )
 }
 
 exports.upload_comment = function (request, response) {
