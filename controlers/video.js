@@ -140,16 +140,42 @@ function up_comment(id, pname, comment, response) {
 }
 
 exports.upload_comment = function (request, response) {
-    
+    Video.findById(request.params.id, function (err, video) {
+        return up_comment(request.params.id, request.body.pname, request.body.comment, response)
+    })
 }
 exports.upload_file = async function (request, response) {
-
+    if (!request.files || Object.keys(request.files).length === 0) {
+        return response.status(400).send('No files were uploaded.');
+    }
+    if (request.session.User) {
+        userData = await User.findOne({
+            email: request.session.User.user
+        })
+        let uploadedFile = request.files.uploadedFile;
+        await uploadedFile.mv(`./public/videos/${uploadedFile.name}`, (err) => {
+            console.log(uploadedFile.name);
+            InsertData(uploadedFile.name, userData.id, function () {
+                console.log("Successed");
+            })
+            response.redirect("/");
+        })
+    }
 }
 exports.viewUp = function (request, response) {
     response.render("upfile")
 }
 
 exports.deleteVideo = function (request, response) {
-    
+    var id = request.params.id;
+    if (request.session.User) {
+        Video.deleteOne({
+            "_id": id
+        }).then(() => {
+            return response.redirect("/account")
+        }).catch((err) => {
+            return response.redirect("/")
+        })
+    }
     return response.redirect("/")
 }
