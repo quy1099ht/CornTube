@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corn website</title>
-    <link rel="icon" href="https://img.icons8.com/ios-glyphs/344/youtube-play.png">
+    <title>Searching</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="icon" href="https://img.icons8.com/ios-glyphs/344/youtube-play.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
-<!-- https://cdn-icons.flaticon.com/png/512/2859/premium/2859705.png?token=exp=1646971371~hmac=b017636b78e41106617b2ee34b783c25 -->
 
 <body>
     <nav class="flex-div">
         <div class="nav-left flex-div">
-            <img src="images/menu.png" class="menu-icon">
+            <img onclick="w3_open()" src="images/menu.png" class="menu-icon">
             <a href="/"><img src="images/logo.png" class="logo"></a>
         </div>
         <!-- Search -->
@@ -36,64 +35,55 @@
                     <img src="images/upload.png" onclick="document.getElementById('fileInput').click();">
                 </form>
 
+
                 <a href="/logout">
                     <button class="navbtn" type="button">Logout</button>
                 </a>
-                <% } else { %>
-                    <a href="/login">
-                        <button class="navbtn" type="button"><i class="fa fa-user"></i>Login</button>
-                    </a>
-                    <% } %>
+            <% } else { %>
+                <a href="/login">
+                    <button class="navbtn" type="button"><i class="fa fa-user"></i>Login</button>
+                </a>
+            <% } %>
         </div>
     </nav>
-
     <!-- ---------------------------SIDE BAR ------------------- -->
-    <div class="sidebar">
+    <div class="sidebar" style="display:none;z-index:5" id="mySidebar">
         <div class="shortcut-links">
-            <a href="/"><img src="images/home.png">
-                <p>Home</p>
-            </a>
-            <% if(logged) { %>
-                <a href="/account"><i class="fa fa-user"></i>
-                    <p>Profile</p>
-                </a>
-
-                <a href="/history"><img src="images/history.png">
-                    <p>History</p>
-                </a>
-                <!-- <a href=""><img src="images/subscriprion.png">
-                    <p>Subcription</p>
-                </a> -->
-                <% } %>
-                    <hr>
+            <a class="w3-bar-item w3-button w3-large" onclick="w3_close()">&times; Close</a>
+            <a href="/"><img src="images/home.png"><p>Home</p></a>
+            <a href="/profile"><i class="fa fa-user"></i><p>Profile</p></a>
+            <a href="/history"><img src="images/history.png"><p>History</p></a>
+            <hr>
         </div>
     </div>
 
     <!-- -------------MAIN----------------------------------------->
-    <div class="container">
-        <div class="banner">
-            <!--img src="images/banner.png"-->
-        </div>
-        <div class="list-container">
-            <% for(var i=0; i < videos.length; i++) { %>
-                <div class="vid-list">
-                    <a href="/<%= videos[i].id %>"><video src="/videos<%=videos[i].path%>" class="thumbnail" muted
-                            onmouseenter="play(this)" onmouseleave="stop(this)"></video></a>
-                    <div class="flex-div">
-                        <img src="<%= videos[i].creatorID %>">
-                        <div class="vid-info">
-                            <a href="/<%= videos[i].id %>">
-                                <%= videos[i].name%>
-                            </a>
-                            <p><%= videos[i].views %> views 1 &bull; year ago</p>
-                        </div>
+    <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+    <div class="history-container">
+        <div class="historylist-container">
+            <div class="left-col">
+                <h1>SEARCH RESULT</h1>
+                <!-- List video -->
+                <% for(var i = 0; i < videos.length; i++) { %>
+                <div class="history-list">
+                    <a href="/<%= videos[i].id %>"><video style="height: 200px; width: 400px;" src="/videos<%=videos[i].path%>" class="history-img" muted
+                        onmouseenter="play(this)" onmouseleave="stop(this)"></video></a>
+                    <div style="padding-left: 20px;" class="vid-info">
+                        <a href="/<%= videos[i].id %>"><%= videos[i].name %></a>
+                        <p>Souls. Ch</p>
+                        <p><%= videos[i].views %> views</p>
                     </div>
-                </div>
+                </div>  
+                
+
                 <% } %>
+                <!-- End -->
+            </div>
         </div>
     </div>
 
-
+    <script src="js/script.js"></script>
     <script>
         var menuIcon = document.querySelector(".menu-icon");
         var sidebar = document.querySelector(".sidebar");
@@ -113,6 +103,8 @@
             x.pause()
         }
     </script>
+    <script src="js/sideScript.js"></script>
+    
 </body>
 
 </html>

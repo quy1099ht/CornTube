@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="icon" href="https://img.icons8.com/ios-glyphs/344/youtube-play.png">
+</head>
+
+<body class="p-body">
+
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img onclick="w3_open()" src="images/menu.png" class="menu-icon">
+            <a href="/"><img src="images/logo.png" class="logo"></a>
+        </div>
+        <!-- Search -->
+        <div class="nav-middle flex-div">
+            <form method="post" action="/search" class="search-box flex-div">
+                <input name="search" type="text" placeholder="Search">
+                <button style="border: none;background-color:white;"><img src="images/search.png"></button>
+            </form>
+            <img src="images/voice-search.png" class="mic-icon">
+        </div>
+        <!-- End Search -->
+        <div class="nav-right flex-div">
+            <% if(logged) { %>
+                <img src="images/upload.png">
+                <img src="images/more.png">
+                <img src="images/notification.png">
+
+                <a href="/logout">
+                    <button class="navbtn" type="button">Logout</button>
+                </a>
+            <% } else { %>
+                <a href="/login">
+                    <button class="navbtn" type="button"><i class="fa fa-user"></i>Login</button>
+                </a>
+            <% } %>
+        </div>
+    </nav>
+
+    <!-- ---------------------------SIDE BAR ------------------- -->
+    <div class="sidebar" style="display:none;z-index:5" id="mySidebar">
+        <div class="shortcut-links">
+            <a class="w3-bar-item w3-button w3-large" onclick="w3_close()">&times; Close</a>
+            <a href="/"><img src="images/home.png"><p>Home</p></a>
+            <a href="/profile"><i class="fa fa-user"></i><p>Profile</p></a>
+            <a href="/history"><img src="images/history.png"><p>History</p></a>
+            <hr>
+        </div>
+    </div>
+
+    <!-- -------------MAIN----------------------------------------->
+    <div class="w3-overlay" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+    <div class="tab-container">
+        <div class="btn-box">
+            <button id="btn1" onclick="openinfo()"><i class="fa fa-user"></i>INFO</button>
+            <button id="btn2" onclick="openmyvid()"><i class="fa fa-video-camera"></i>MY VIDEOS</button>
+            <button id="btn3" onclick="openabout()"><i class="fa fa-folder"></i>ABOUT</button>
+        </div>
+        <div class="content" id="content1">
+            <div class="image-container">
+                <button id="edit" onclick = "editOpen()" class="edit-btn">Edit</button>
+                <img src="<%= user.avatarURL %>" alt="avatar">
+                <div class="title">
+                    <h2><%= user.name %></h2>
+                </div>
+            </div>
+            <div class="main-container">
+                <p><i class="fa fa-envelope info"></i><%= user.email%></p>
+                <p><i class="fa fa-birthday-cake info"></i><%= user.dateOfBirth %></p>
+                <p><i class="fa fa-home info"></i><%= user.country%></p>
+                <p><i class="fa fa-wrench info"></i><%= user.date_create%></p>
+                <hr>
+            </div>
+        </div>
+        <div class="content2" id="content2">
+            <% videos.forEach(function(video){ %>
+            <div class="history-list" style="border: none;">
+                <div class="history-img">
+                    <img src="images/thumbnail1.png">
+                </div>
+                <div class="vid-info">
+                    <a href="/<%= video.id %>"><%= video.name %></a>
+                    <p><%= video.creatorID %>. Ch</p>
+                    <p><%= video.views %> views</p>
+                    <form method="post" action = "/delete/<%= video.id %>">
+                        <input type="submit" value="Delete" placeholder="Delete" style="background-color: aqua;"></input>
+                    </form>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+        <div class="content3" id="content3">
+            <div class="left-content">
+                <h1>What's up ! </h1>
+                <p>aliquip in officia quis irure do nostrud aliqua cillum quis excepteur esse anim
+                    minim id esse ullamco pariatur pariatur do quis eiusmod irure et eu nisi ea incididunt
+                    aute qui laborum exercitation adipisicing ex adipisicing sint incididunt enim irure culpa
+                    ea ad deserunt incididunt commodo adipisicing cupidatat irure tempor laborum velit consequat
+                    laboris irure sint veniam esse nulla pariatur reprehenderit</p>
+            </div>
+            <div class="right-content">
+                <img src="/images/pic1.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-modal">
+        <div class="modal-content">
+            <div onclick="closeEdit()" class="close">+</div>
+            <img src="/images/avatars/default_avt.png" style="border-radius: 20%;">
+            <form action="/account" method="post" class="edit-form">
+                <input name="name" type="text" placeholder="Name">
+                <input name="email" type="text" value="<%= user.email %>" disabled placeholder="Email">
+                <input name="dob" type="text" placeholder="DOB">
+                <input name="country" type="text" placeholder="Country">
+                <input name="password" type="password" placeholder="Password">
+                <input name="cpassword" type="password" placeholder="Confirm Password">
+                <input type="submit" class="change-btn" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script defer src="js/script.js"></script>
+    <script src="js/sideScript.js"></script>
+</body>
+
+</html>
