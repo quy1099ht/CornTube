@@ -32,10 +32,20 @@ function getDate() {
 }
 
 function updateViews(id, views) {
-    
+    Video.updateOne({
+        "_id": id
+    }, {
+        $set: { views: views }
+    }, function (err, res) {
+        if (err) {
+            console.log(err);
+        }
+        console.log("Video ID : " + id + " is Updated");
+    }
+    )
 }
 function getRandomInt(max) {
-
+    return Math.floor(Math.random() * max);
 }
 function randomRecommendation(videos, callback) {
 
