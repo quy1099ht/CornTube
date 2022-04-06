@@ -30,7 +30,7 @@ There were still some limited when developing the project like knowledge, qualif
 
 
 ## Authors
-Quy
+Quy <br />
 [@Quy](https://www.facebook.com/quy.tan.96/)
 
 ## Contributors names and contact info
@@ -38,5 +38,5 @@ Quy
 Bill Black  
 [@BillBlack](https://www.facebook.com/profile.php?id=100007683707543)
 
-Phat Long__
+Phat Long <br />
 [@PhatLong](https://www.facebook.com/phat.long.752861)
