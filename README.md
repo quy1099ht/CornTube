@@ -30,12 +30,13 @@ There were still some limited when developing the project like knowledge, qualif
 
 
 ## Authors
+Quy
 [@Quy](https://www.facebook.com/quy.tan.96/)
-Contributors names and contact info
+
+## Contributors names and contact info
 
 Bill Black  
 [@BillBlack](https://www.facebook.com/profile.php?id=100007683707543)
 
 Phat Long
-
 [@PhatLong](https://www.facebook.com/phat.long.752861)
