@@ -16,7 +16,7 @@ Even though the website still has many flaws, all of it basic function is workin
 In our opinion, Corntube is a promising project that maybe a first step to lead us higher more complicated project such as a more complicated website.
 There were still some limited when developing the project like knowledge, qualification, technology and time so because of that we can only give it our best in this project. If only we could get more time and others source of supportive then we believe that our project will be more perfect.
 
-## Tools & frameword 
+## Tools & framework 
 - Express Js
 - MongoDB
 - Visual Studio Code
