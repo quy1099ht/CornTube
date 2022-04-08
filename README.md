@@ -16,6 +16,13 @@ Even though the website still has many flaws, all of it basic function is workin
 In our opinion, Corntube is a promising project that maybe a first step to lead us higher more complicated project such as a more complicated website.
 There were still some limited when developing the project like knowledge, qualification, technology and time so because of that we can only give it our best in this project. If only we could get more time and others source of supportive then we believe that our project will be more perfect.
 
+## Tools & framework 
+- Express Js
+- MongoDB
+- Visual Studio Code
+
+## Mock-up
+https://www.figma.com/file/QwPT5GHRuVlZgJkIcbfBn8/Corntube?node-id=0%3A1
 
 ### Installing
 
@@ -24,17 +31,15 @@ There were still some limited when developing the project like knowledge, qualif
 ### Executing program
 
 * npm start
-* Step-by-step bullets
-## Help
-
-
 
 ## Authors
+Quy <br />
+[@Quy](https://www.facebook.com/quy.tan.96/)
 
-Contributors names and contact info
+## Contributors names and contact info
 
 Bill Black  
 [@BillBlack](https://www.facebook.com/profile.php?id=100007683707543)
 
-Phat Long
+Phat Long <br />
 [@PhatLong](https://www.facebook.com/phat.long.752861)

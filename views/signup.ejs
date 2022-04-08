@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="https://img.icons8.com/ios-glyphs/344/youtube-play.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@100&family=Roboto:wght@100&display=swap" rel="stylesheet"> 
+</head>
+<body class="s-body">
+    <button class="btn" onclick="window.location.href='/'"><i class="fa fa-home"></i> Home</button>
+    <div class="signup">
+        <h1>Sign up</h1>
+        <h4>Insert your information here</h4>
+        <form method="post" action="/signup">
+            <label>First Name</label>
+            <input name="fname" type="text">
+            <label>Last Name</label>
+            <input name = "lname" type="text">
+            <label>Email</label>
+            <input name="email" type="email">
+            <label>Password</label>
+            <input name="password" type="password">
+            <label>Confirm Password</label>
+            <input name="password2" type="password">
+            <button type="submit">Submit</button>
+        </form>
+        <p>By cliking the Sign UP button, you agree to our <br>
+        <a href="#">Terms and Condition</a> and <a href="#">Policy and Privacy</a>
+        </p>
+    </div>
+    <p class="para-2">Already have a account? <a href="/login">Login here</a></p>
+    
+</body>
+</html>
