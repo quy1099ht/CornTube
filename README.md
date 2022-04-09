@@ -23,7 +23,8 @@ There were still some limited when developing the project like knowledge, qualif
 
 ## Mock-up
 https://www.figma.com/file/QwPT5GHRuVlZgJkIcbfBn8/Corntube?node-id=0%3A1
-
+## Jira
+https://moguokayu.atlassian.net/jira/software/projects/CWD/boards/4/roadmap?shared=&atlOrigin=eyJpIjoiODUzZmY2MzU0MTAzNGIyYzkwZGFmMzdjZTBjNjdmMWIiLCJwIjoiaiJ9
 ### Installing
 
 * npm install
